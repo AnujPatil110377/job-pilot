@@ -2,6 +2,9 @@ import { Briefcase, Building2, Users } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 import StatsCard from "@/components/StatsCard";
+import FeaturedJobs from "@/components/FeaturedJobs";
+import HowItWorks from "@/components/HowItWorks";
+import PopularCategories from "@/components/PopularCategories";
 
 const Index = () => {
   const suggestions = [
@@ -13,12 +16,12 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-surface">
+    <div className="min-h-screen bg-background">
       <Navbar />
       
-      <main className="pt-24">
+      <main>
         {/* Hero Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
@@ -84,6 +87,19 @@ const Index = () => {
               delay={600}
             />
           </div>
+        </div>
+
+        {/* Featured Jobs Section */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FeaturedJobs />
+        </div>
+
+        {/* How It Works Section */}
+        <HowItWorks />
+
+        {/* Popular Categories Section */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <PopularCategories />
         </div>
       </main>
     </div>
