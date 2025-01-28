@@ -92,3 +92,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .doodle {
+    @apply absolute opacity-10 pointer-events-none;
+  }
+}

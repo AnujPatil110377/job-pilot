@@ -5,12 +5,13 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { label: "Home", href: "#" },
-    { label: "Find Job", href: "#" },
-    { label: "Employers", href: "#" },
+    { label: "Home", href: "/" },
+    { label: "Find Job", href: "find-job" },
     { label: "Candidates", href: "#" },
-    { label: "Pricing Plans", href: "#" },
-    { label: "Customer Support", href: "#" },
+    { label: "About", href: "#" },
+    { label: "Contact", href: "#" },
+
+    
   ];
 
   return (
@@ -22,17 +23,17 @@ const Navbar = () => {
               <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
                 <span className="text-white font-semibold">JP</span>
               </div>
-              <span className="text-xl font-semibold text-gray-900">Jobpilot</span>
+              <span className="text-3xl font-semibold text-gray-900 tracking-wide ">Jobpilot</span>
             </a>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-10">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                className="text-gray-800 hover:text-gray-900 transition-colors duration-200 text-2xl"
               >
                 {item.label}
               </a>
@@ -40,10 +41,10 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <button className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-200">
+            <button className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 text-2xl">
               Sign In
             </button>
-            <button className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200">
+            <button className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200 text-2xl">
               Post A Job
             </button>
           </div>
@@ -73,7 +74,7 @@ const Navbar = () => {
                 {item.label}
               </a>
             ))}
-            <div className="mt-4 flex flex-col space-y-2 px-3">
+            <div className="mt-4 flex flex-col space-y-2 px-3 justify-end">
               <button className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 text-center">
                 Sign In
               </button>

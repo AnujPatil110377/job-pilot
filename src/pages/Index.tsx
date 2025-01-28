@@ -22,6 +22,31 @@ const Index = () => {
       <main>
         {/* Hero Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+          {/* Background Doodles */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="doodle top-20 left-10">
+              <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-primary/20">
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+              </svg>
+            </div>
+            <div className="doodle top-40 right-20">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-primary/20">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <div className="doodle bottom-20 left-1/4">
+              <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-primary/20">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              </svg>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
@@ -50,11 +75,7 @@ const Index = () => {
             </div>
             
             <div className="relative hidden md:block">
-              <img
-                src="/lovable-uploads/9efed962-e3da-400b-9f2a-57861ca8355c.png"
-                alt="Job seeker illustration"
-                className="w-full h-auto object-contain"
-              />
+              <img src="/cutie.svg" alt="Cutie" className="w-12/4 h-auto object-contain" />
             </div>
           </div>
         </div>
