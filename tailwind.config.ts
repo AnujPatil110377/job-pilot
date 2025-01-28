@@ -24,6 +24,9 @@ export default {
         background: "#FFFFFF",
         surface: "#F8FAFC",
         "surface-hover": "#F1F5F9",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
