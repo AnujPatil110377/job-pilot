@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Icons } from "@/components/ui/icons";
+import { Eye, EyeOff } from "lucide-react";
 
 interface AuthFormProps {
   mode: "Login" | "Signup";
@@ -13,6 +14,7 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,14 +24,14 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-8">
+    <div className="w-full max-w-md mx-auto space-y-6 bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-lg">
       <div className="space-y-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">
           {mode === "Login" ? "Welcome back" : "Create your account"}
         </h1>
         <p className="text-sm text-muted-foreground">
           {mode === "Login" 
-            ? "Enter your credentials to access your account" 
+            ? "Welcome! Please enter your details to sign in." 
             : "Welcome! Please fill in the details to get started."}
         </p>
       </div>
@@ -37,7 +39,7 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
       <div className="space-y-4">
         <Button 
           variant="outline" 
-          className="w-full py-6 text-sm font-medium" 
+          className="w-full py-6 text-sm font-medium border-2 hover:bg-gray-50 dark:hover:bg-zinc-800" 
           onClick={() => {}} 
           disabled={isLoading}
         >
@@ -47,7 +49,7 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
 
         <Button 
           variant="outline" 
-          className="w-full py-6 text-sm font-medium" 
+          className="w-full py-6 text-sm font-medium border-2 hover:bg-gray-50 dark:hover:bg-zinc-800" 
           onClick={() => {}} 
           disabled={isLoading}
         >
@@ -61,7 +63,7 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
           </div>
           <div className="relative flex justify-center text-xs uppercase">
             <span className="bg-background px-2 text-muted-foreground">
-              or continue with
+              or
             </span>
           </div>
         </div>
@@ -74,7 +76,7 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
             <Input
               type="email"
               placeholder="Enter your email address"
-              className="py-5"
+              className="py-5 bg-transparent border-2"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={isLoading}
@@ -86,29 +88,60 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
             <label className="text-sm font-medium leading-none text-muted-foreground">
               Password
             </label>
-            <Input
-              type="password"
-              placeholder="Enter your password"
-              className="py-5"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              disabled={isLoading}
-              required
-            />
+            <div className="relative">
+              <Input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                className="py-5 bg-transparent border-2 pr-10"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={isLoading}
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+              >
+                {showPassword ? (
+                  <EyeOff className="h-5 w-5" />
+                ) : (
+                  <Eye className="h-5 w-5" />
+                )}
+              </button>
+            </div>
           </div>
 
           <Button 
-            className="w-full py-6 text-sm font-medium bg-primary" 
+            className="w-full py-6 text-sm font-medium bg-primary hover:bg-primary/90" 
             type="submit" 
             disabled={isLoading}
           >
-            {isLoading && (
+            {isLoading ? (
               <Icons.spinner className="w-4 h-4 mr-2 animate-spin" />
-            )}
+            ) : null}
             {mode === "Login" ? "Sign in" : "Continue"}
           </Button>
         </form>
       </div>
+
+      <p className="text-center text-sm text-muted-foreground">
+        {mode === "Login" ? (
+          <>
+            Don't have an account?{" "}
+            <a href="/auth/signup" className="text-primary hover:underline font-medium">
+              Sign up
+            </a>
+          </>
+        ) : (
+          <>
+            Already have an account?{" "}
+            <a href="/auth/login" className="text-primary hover:underline font-medium">
+              Sign in
+            </a>
+          </>
+        )}
+      </p>
     </div>
   );
 };
