@@ -10,6 +10,9 @@ const nextConfig = {
       },
     ];
   },
+  server: {
+    port: 8080
+  }
 };
 
 export default nextConfig;

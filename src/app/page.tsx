@@ -6,7 +6,7 @@ import FeaturedJobs from "@/components/FeaturedJobs";
 import HowItWorks from "@/components/HowItWorks";
 import PopularCategories from "@/components/PopularCategories";
 
-export default function Home() {
+export default function Page() {
   const suggestions = [
     "Designer",
     "Programming",
