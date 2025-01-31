@@ -6,7 +6,7 @@ import FeaturedJobs from "@/components/FeaturedJobs";
 import HowItWorks from "@/components/HowItWorks";
 import PopularCategories from "@/components/PopularCategories";
 
-const Index = () => {
+export default function Index() {
   const suggestions = [
     "Designer",
     "Programming",
@@ -125,6 +125,4 @@ const Index = () => {
       </main>
     </div>
   );
-};
-
-export default Index;
+}
