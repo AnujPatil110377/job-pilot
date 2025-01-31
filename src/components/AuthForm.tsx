@@ -24,12 +24,12 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
   };
 
   return (
-    <div className="w-full max-w-md space-y-6 bg-[#1A1F2C]/80 dark:bg-gray-900/50 backdrop-blur-xl p-8 rounded-3xl shadow-xl border border-white/10">
+    <div className="w-full space-y-6 bg-white dark:bg-gray-800/50 backdrop-blur-lg p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
       <div className="space-y-2 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight text-white">
+        <h1 className="text-2xl font-semibold tracking-tight">
           {mode === "Login" ? "Welcome back" : "Create your account"}
         </h1>
-        <p className="text-sm text-gray-400">
+        <p className="text-sm text-muted-foreground">
           {mode === "Login" 
             ? "Welcome! Please enter your details to sign in." 
             : "Welcome! Please fill in the details to get started."}
@@ -37,34 +37,32 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
       </div>
 
       <div className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <Button 
-            variant="outline" 
-            className="w-full h-12 text-sm font-medium bg-white/5 hover:bg-white/10 text-white border-white/10" 
-            onClick={() => {}} 
-            disabled={isLoading}
-          >
-            <Icons.gitHub className="w-5 h-5 mr-2" />
-            GitHub
-          </Button>
+        <Button 
+          variant="outline" 
+          className="w-full h-12 text-sm font-medium border-2 hover:bg-gray-50 dark:hover:bg-gray-800/50" 
+          onClick={() => {}} 
+          disabled={isLoading}
+        >
+          <Icons.gitHub className="w-5 h-5 mr-3" />
+          Continue with GitHub
+        </Button>
 
-          <Button 
-            variant="outline" 
-            className="w-full h-12 text-sm font-medium bg-white/5 hover:bg-white/10 text-white border-white/10" 
-            onClick={() => {}} 
-            disabled={isLoading}
-          >
-            <Icons.google className="w-5 h-5 mr-2" />
-            Google
-          </Button>
-        </div>
+        <Button 
+          variant="outline" 
+          className="w-full h-12 text-sm font-medium border-2 hover:bg-gray-50 dark:hover:bg-gray-800/50" 
+          onClick={() => {}} 
+          disabled={isLoading}
+        >
+          <Icons.google className="w-5 h-5 mr-3" />
+          Continue with Google
+        </Button>
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t border-white/10" />
+            <span className="w-full border-t dark:border-gray-700" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-[#1A1F2C] dark:bg-gray-900 px-2 text-gray-400">
+            <span className="bg-white dark:bg-gray-800 px-2 text-muted-foreground">
               or
             </span>
           </div>
@@ -72,13 +70,13 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-400">
+            <label className="text-sm font-medium leading-none text-muted-foreground">
               Email address
             </label>
             <Input
               type="email"
               placeholder="Enter your email address"
-              className="h-12 bg-white/5 border-white/10 text-white placeholder:text-gray-500"
+              className="py-5 bg-transparent border-2"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={isLoading}
@@ -87,14 +85,14 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-400">
+            <label className="text-sm font-medium leading-none text-muted-foreground">
               Password
             </label>
             <div className="relative">
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
-                className="h-12 bg-white/5 border-white/10 text-white placeholder:text-gray-500 pr-10"
+                className="py-5 bg-transparent border-2 pr-10"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
@@ -103,7 +101,7 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-300"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
               >
                 {showPassword ? (
                   <EyeOff className="h-5 w-5" />
@@ -115,7 +113,7 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
           </div>
 
           <Button 
-            className="w-full h-12 text-sm font-medium bg-[#7C3AED] hover:bg-[#6D28D9] text-white" 
+            className="w-full py-6 text-sm font-medium bg-primary hover:bg-primary/90" 
             type="submit" 
             disabled={isLoading}
           >
@@ -127,18 +125,18 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
         </form>
       </div>
 
-      <p className="text-center text-sm text-gray-400">
+      <p className="text-center text-sm text-muted-foreground">
         {mode === "Login" ? (
           <>
             Don't have an account?{" "}
-            <a href="/auth/signup" className="text-[#7C3AED] hover:text-[#6D28D9] font-medium">
+            <a href="/auth/signup" className="text-primary hover:underline font-medium">
               Sign up
             </a>
           </>
         ) : (
           <>
             Already have an account?{" "}
-            <a href="/auth/login" className="text-[#7C3AED] hover:text-[#6D28D9] font-medium">
+            <a href="/auth/login" className="text-primary hover:underline font-medium">
               Sign in
             </a>
           </>
