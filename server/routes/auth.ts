@@ -29,15 +29,24 @@ passport.use(new GitHubStrategy({
   },
   async (accessToken, refreshToken, profile, done) => {
     try {
-      let user = await User.findOne({ githubId: profile.id });
+      let user = await User.findOne({ 
+        $or: [
+          { githubId: profile.id },
+          { email: profile.emails?.[0]?.value }
+        ]
+      });
       
       if (!user) {
         user = await User.create({
           githubId: profile.id,
           email: profile.emails?.[0]?.value,
           name: profile.displayName,
-          password: '', // Required field but not used for OAuth
+          password: 'oauth-login', // Required field but not used for OAuth
         });
+      } else if (!user.githubId) {
+        // Update existing user with GitHub ID
+        user.githubId = profile.id;
+        await user.save();
       }
       
       return done(null, user);
@@ -55,15 +64,24 @@ passport.use(new GoogleStrategy({
   },
   async (accessToken, refreshToken, profile, done) => {
     try {
-      let user = await User.findOne({ googleId: profile.id });
+      let user = await User.findOne({ 
+        $or: [
+          { googleId: profile.id },
+          { email: profile.emails?.[0]?.value }
+        ]
+      });
       
       if (!user) {
         user = await User.create({
           googleId: profile.id,
           email: profile.emails?.[0]?.value,
           name: profile.displayName,
-          password: '', // Required field but not used for OAuth
+          password: 'oauth-login', // Required field but not used for OAuth
         });
+      } else if (!user.googleId) {
+        // Update existing user with Google ID
+        user.googleId = profile.id;
+        await user.save();
       }
       
       return done(null, user);
