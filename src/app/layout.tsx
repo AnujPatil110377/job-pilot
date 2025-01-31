@@ -5,8 +5,8 @@ import "../index.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Job Portal",
-  description: "Find your next job opportunity",
+  title: "Jobpilot - Find Your Dream Job",
+  description: "Find a job that suits your interest & skills",
 };
 
 export default function RootLayout({
