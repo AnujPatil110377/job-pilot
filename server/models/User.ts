@@ -4,9 +4,9 @@ export interface IUser extends Document {
   email: string;
   password: string;
   createdAt: Date;
-  githubId: string;
-  googleId: string;
-  name: string;
+  githubId?: string;
+  googleId?: string;
+  name?: string;
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -36,7 +36,6 @@ const userSchema = new mongoose.Schema<IUser>({
   },
 });
 
-// Check if model exists before creating a new one
 const User = mongoose.models.User || mongoose.model<IUser>('User', userSchema);
 
-export default User; 
+export default User;
