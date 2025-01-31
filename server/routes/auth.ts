@@ -39,12 +39,11 @@ passport.use(new GitHubStrategy({
       if (!user) {
         user = await User.create({
           githubId: profile.id,
-          email: profile.emails?.[0]?.value,
+          email: profile.emails?.[0]?.value || `github-${profile.id}@example.com`,
           name: profile.displayName,
-          password: 'oauth-login', // Required field but not used for OAuth
+          password: 'oauth-login',
         });
       } else if (!user.githubId) {
-        // Update existing user with GitHub ID
         user.githubId = profile.id;
         await user.save();
       }
@@ -74,12 +73,11 @@ passport.use(new GoogleStrategy({
       if (!user) {
         user = await User.create({
           googleId: profile.id,
-          email: profile.emails?.[0]?.value,
+          email: profile.emails?.[0]?.value || `google-${profile.id}@example.com`,
           name: profile.displayName,
-          password: 'oauth-login', // Required field but not used for OAuth
+          password: 'oauth-login',
         });
       } else if (!user.googleId) {
-        // Update existing user with Google ID
         user.googleId = profile.id;
         await user.save();
       }
