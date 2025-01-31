@@ -24,7 +24,7 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-6 bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-lg">
+    <div className="w-full space-y-6 bg-white dark:bg-gray-800/50 backdrop-blur-lg p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
       <div className="space-y-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">
           {mode === "Login" ? "Welcome back" : "Create your account"}
@@ -39,7 +39,7 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
       <div className="space-y-4">
         <Button 
           variant="outline" 
-          className="w-full py-6 text-sm font-medium border-2 hover:bg-gray-50 dark:hover:bg-zinc-800" 
+          className="w-full h-12 text-sm font-medium border-2 hover:bg-gray-50 dark:hover:bg-gray-800/50" 
           onClick={() => {}} 
           disabled={isLoading}
         >
@@ -49,7 +49,7 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
 
         <Button 
           variant="outline" 
-          className="w-full py-6 text-sm font-medium border-2 hover:bg-gray-50 dark:hover:bg-zinc-800" 
+          className="w-full h-12 text-sm font-medium border-2 hover:bg-gray-50 dark:hover:bg-gray-800/50" 
           onClick={() => {}} 
           disabled={isLoading}
         >
@@ -59,10 +59,10 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t" />
+            <span className="w-full border-t dark:border-gray-700" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">
+            <span className="bg-white dark:bg-gray-800 px-2 text-muted-foreground">
               or
             </span>
           </div>
