@@ -4,6 +4,9 @@ export interface IUser extends Document {
   email: string;
   password: string;
   createdAt: Date;
+  githubId: string;
+  googleId: string;
+  name: string;
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -21,6 +24,15 @@ const userSchema = new mongoose.Schema<IUser>({
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  githubId: {
+    type: String,
+  },
+  googleId: {
+    type: String,
+  },
+  name: {
+    type: String,
   },
 });
 

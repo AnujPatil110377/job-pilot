@@ -1,34 +1,50 @@
-import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import session from 'express-session';
+import passport from 'passport';
+import authRoutes from './routes/auth';
 import bcrypt from 'bcryptjs';
-import dbConnect from './lib/mongodb';
 import User from './models/User';
 import type { Request, Response } from 'express';
 
+dotenv.config();
+
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://192.168.56.1:5173',
+  credentials: true
+}));
 app.use(express.json());
-
-// Connect to MongoDB
-const startServer = async () => {
-  try {
-    await dbConnect();
-    
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  } catch (error) {
-    console.error('Failed to start server:', error);
-    process.exit(1);
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
   }
-};
+}));
 
-// Start server
-startServer();
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Routes
+app.use('/api/auth', authRoutes);
+
+// MongoDB connection
+mongoose.connect(process.env.MONGODB_URI!)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error('MongoDB connection error:', err));
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 // Register endpoint
 app.post('/api/auth/password/register', async (req: Request, res: Response) => {

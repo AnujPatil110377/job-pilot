@@ -23,6 +23,14 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
     setIsLoading(false);
   };
 
+  const handleGitHubLogin = () => {
+    window.location.href = `${import.meta.env.VITE_API_URL}/api/auth/github`;
+  };
+
+  const handleGoogleLogin = () => {
+    window.location.href = `${import.meta.env.VITE_API_URL}/api/auth/google`;
+  };
+
   return (
     <div className="w-full space-y-6 bg-white dark:bg-gray-800/50 backdrop-blur-lg p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
       <div className="space-y-2 text-center">
@@ -40,7 +48,7 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
         <Button 
           variant="outline" 
           className="w-full h-12 text-sm font-medium border-2 hover:bg-gray-50 dark:hover:bg-gray-800/50" 
-          onClick={() => {}} 
+          onClick={handleGitHubLogin}
           disabled={isLoading}
         >
           <Icons.gitHub className="w-5 h-5 mr-3" />
@@ -50,7 +58,7 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
         <Button 
           variant="outline" 
           className="w-full h-12 text-sm font-medium border-2 hover:bg-gray-50 dark:hover:bg-gray-800/50" 
-          onClick={() => {}} 
+          onClick={handleGoogleLogin}
           disabled={isLoading}
         >
           <Icons.google className="w-5 h-5 mr-3" />
@@ -113,7 +121,7 @@ const AuthForm = ({ mode, onSubmit }: AuthFormProps) => {
           </div>
 
           <Button 
-            className="w-full py-6 text-sm font-medium bg-primary hover:bg-primary/90" 
+            className="w-full py-6 text-sm font-medium bg-[hsla(252,100%,63%,1)] hover:bg-[hsla(252,100%,63%,0.9)]" 
             type="submit" 
             disabled={isLoading}
           >
