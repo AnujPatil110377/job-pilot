@@ -1,13 +1,14 @@
+
 import express from 'express';
 import passport from 'passport';
 import { Strategy as GitHubStrategy } from 'passport-github';
 import { OAuth2Strategy as GoogleStrategy } from 'passport-google-oauth';
-import User from '../models/User';
+import User, { IUser } from '../models/User';
 
 const router = express.Router();
 
 // Passport configuration
-passport.serializeUser((user: any, done) => {
+passport.serializeUser((user: IUser, done) => {
   done(null, user.id);
 });
 
