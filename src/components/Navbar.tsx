@@ -1,17 +1,19 @@
+
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useLocation, Link } from "react-router-dom";
+import { Menu, X, User, LogIn } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "Find Job", href: "find-job" },
+    { label: "Find Jobs", href: "/jobs" },
+    { label: "Post a Job", href: "/jobs/post" },
     { label: "Candidates", href: "#" },
     { label: "About", href: "#" },
     { label: "Contact", href: "#" },
-
-    
   ];
 
   return (
@@ -19,34 +21,38 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <a href="/" className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
                 <span className="text-white font-semibold">JP</span>
               </div>
-              <span className="text-3xl font-semibold text-gray-900 tracking-wide ">Jobpilot</span>
-            </a>
+              <span className="text-xl font-semibold text-gray-900 tracking-wide">Jobpilot</span>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-10">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
-                href={item.href}
-                className="text-gray-800 hover:text-gray-900 transition-colors duration-200 text-2xl"
+                to={item.href}
+                className={`text-gray-800 hover:text-gray-900 transition-colors duration-200 ${
+                  location.pathname === item.href ? "text-primary font-medium" : ""
+                }`}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <button className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 text-2xl">
+            <Link to="/auth/login" className="flex items-center gap-1.5 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-200">
+              <LogIn className="w-4 h-4" />
               Sign In
-            </button>
-            <button className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200 text-2xl">
-              Post A Job
-            </button>
+            </Link>
+            <Link to="/profile" className="flex items-center gap-1.5 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200">
+              <User className="w-4 h-4" />
+              Profile
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -66,21 +72,27 @@ const Navbar = () => {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
-                href={item.href}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                to={item.href}
+                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                  location.pathname === item.href
+                    ? "text-primary bg-gray-50"
+                    : "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                }`}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
             <div className="mt-4 flex flex-col space-y-2 px-3 justify-end">
-              <button className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 text-center">
+              <Link to="/auth/login" className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center gap-2">
+                <LogIn className="w-4 h-4" />
                 Sign In
-              </button>
-              <button className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200">
-                Post A Job
-              </button>
+              </Link>
+              <Link to="/profile" className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200 flex items-center gap-2">
+                <User className="w-4 h-4" />
+                Profile
+              </Link>
             </div>
           </div>
         </div>
