@@ -11,7 +11,10 @@ export default defineConfig(({ mode }) => ({
   ].filter(Boolean),
   server: {
     port: 8080,
-    host: "::"
+    host: "::",
+    allowedHosts: [
+      "4b1d750b-b4b8-44f9-8690-a7026aa11c79.lovableproject.com"
+    ]
   },
   resolve: {
     alias: {
