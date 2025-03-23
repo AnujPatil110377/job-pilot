@@ -5,18 +5,13 @@ const nextConfig = {
   swcMinify: true,
   // Ensure output directory is properly defined for Netlify
   distDir: '.next',
-  // Define asset prefix if needed for CDN
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/' : '',
-  // Add trailing slash to URLs
+  output: 'export',
+  images: { unoptimized: true },
+  // Remove trailing slash configuration as it can cause issues with static exports
   trailingSlash: true,
-  // API rewrite configuration
+  // Remove API rewrites as they won't work with static exports
   async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'http://localhost:5000/api/:path*',
-      },
-    ];
+    return [];
   }
 };
 

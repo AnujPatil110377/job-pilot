@@ -2,17 +2,15 @@
 [build]
   command = "npm run build"
   publish = ".next"
-  environment = { NETLIFY_NEXT_PLUGIN_SKIP = "false" }
+  environment = { NETLIFY_NEXT_PLUGIN_SKIP = "true" }
 
 # Netlify functions configuration
 [functions]
   directory = "netlify/functions"
 
-# Redirects and headers
+# Redirects and headers - using wildcard redirect for SPA
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
