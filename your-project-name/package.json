@@ -1,3 +1,4 @@
+
 {
   "name": "your-project-name",
   "version": "0.1.0",
@@ -6,7 +7,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -22,6 +24,7 @@
     "tailwindcss": "^3.4.1",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
-    "@eslint/eslintrc": "^3"
+    "@eslint/eslintrc": "^3",
+    "@netlify/plugin-nextjs": "^4.41.3"
   }
 }
